@@ -1,8 +1,12 @@
-﻿using System;
+﻿using NHibernate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Library.Models;
+using Library.Models.NHibernate;
+using NHibernate.Linq;
 
 namespace Library.Controllers
 {
@@ -10,7 +14,10 @@ namespace Library.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            using (ISession session = NHibernateHelper.OpenSession())
+            {
+                return View();
+            }
         }
 
         public ActionResult About()
